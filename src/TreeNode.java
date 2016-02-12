@@ -83,7 +83,7 @@ public class TreeNode {
 		if (g > 0 && a <= g) {
 			return false;
 		}
-		if (h > 0 && h > a) {
+		if (h > 0 && a > h) {
 			return false;
 		}
 		return true;
@@ -96,7 +96,7 @@ public class TreeNode {
 	}
 
 	public boolean constraintCheckC() {
-		if (g > 0 && Math.abs(g - c) != -1)
+		if (g > 0 && Math.abs(g - c) != 1)
 			return false;
 		if (h > 0 && Math.abs(h - c) % 2 != 0)
 			return false;

@@ -8,6 +8,12 @@ public class main {
 		TreeNode tree = constructNonHeuristicTree();
 		System.out.println(tree.node_count);
 		System.out.println(tree.leaves.size());
+		for(TreeNode node : tree.leaves){
+			if(node.consistencyCheck()){
+				System.out.println();
+				node.printElements();
+			}
+		}
 	}
 	
 	public static TreeNode constructNonHeuristicTree(){
@@ -18,13 +24,14 @@ public class main {
 		while(frontier.size()>0){
 			TreeNode curr = frontier.remove();
 			if(!curr.hasAllAssigned()){
-				for(int i=1; i<5; i++){
-					TreeNode child = curr.copy();
-					child.setNextVariable(i);
-					curr.addChild(child);
-					head.node_count++;
-					frontier.add(child);
-					
+				if(curr.consistencyCheck()){
+					for(int i=1; i<5; i++){
+						TreeNode child = curr.copy();
+						child.setNextVariable(i);
+						curr.addChild(child);
+						head.node_count++;
+						frontier.add(child);
+					}
 				}
 			}
 			else{
