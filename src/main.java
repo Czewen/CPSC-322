@@ -18,9 +18,9 @@ public class main {
 	
 	public static TreeNode constructNonHeuristicTree(){
 		LinkedList<TreeNode> frontier = new LinkedList<TreeNode>();
-		TreeNode head = new TreeNode();
-		head.leaves = new ArrayList<>();
-		frontier.add(head);
+		TreeNode root = new TreeNode();
+		root.leaves = new ArrayList<>();
+		frontier.add(root);
 		while(frontier.size()>0){
 			TreeNode curr = frontier.remove();
 			if(!curr.hasAllAssigned()){
@@ -29,16 +29,16 @@ public class main {
 						TreeNode child = curr.copy();
 						child.setNextVariable(i);
 						curr.addChild(child);
-						head.node_count++;
+						root.node_count++;
 						frontier.add(child);
 					}
 				}
 			}
 			else{
-				head.leaves.add(curr);
+				root.leaves.add(curr);
 			}
 		}
-		return head;
+		return root;
 	}
 	
 	
